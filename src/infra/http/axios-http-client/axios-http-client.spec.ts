@@ -14,6 +14,6 @@ describe("AxiosHttpClient", () => {
     const url = faker.internet.url();
     const sut = makeSut();
     await sut.post({ url });
-    expect(mockedAxios).toBeCalledWith(url);
+    expect(mockedAxios.post).toBeCalledWith(url);
   });
 });
