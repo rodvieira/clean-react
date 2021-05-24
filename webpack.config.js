@@ -9,7 +9,7 @@ module.exports = {
     publicPath: "/public/js",
     filename: "bundle.js",
   },
-  resolver: {
+  resolve: {
     extensions: [".ts", ".tsx", ".js", "scss"],
     alias: {
       "@": path.join(__dirname, "src"),
