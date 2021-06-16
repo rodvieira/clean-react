@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import Styles from './login-styles.scss';
+import React, { useState, useEffect } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import Styles from './login-styles.scss'
 import {
   Footer,
   Input,
   LoginHeader,
   FormStatus,
-} from '@/presentation/components';
-import Context from '@/presentation/contexts/form/form-context';
-import { Validation } from '@/presentation/protocols/validation';
-import { Authentication } from '@/domain/usecases';
+} from '@/presentation/components'
+import Context from '@/presentation/contexts/form/form-context'
+import { Validation } from '@/presentation/protocols/validation'
+import { Authentication } from '@/domain/usecases'
 
 type Props = {
   validation: Validation
@@ -17,7 +17,7 @@ type Props = {
 }
 
 const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
-  const history = useHistory();
+  const history = useHistory()
   const [state, setState] = useState({
     isLoading: false,
     email: '',
@@ -25,7 +25,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
     emailError: '',
     passwordError: '',
     mainError: '',
-  });
+  })
 
   useEffect(() => {
     setState({
@@ -33,21 +33,21 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
       emailError: validation.validate('email', state.email),
       passwordError: validation.validate('password', state.password)
     })
-  }, [state.email, state.password]);
+  }, [state.email, state.password])
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    event.preventDefault();
+    event.preventDefault()
     try {
       if (state.isLoading || state.emailError || state.passwordError) {
-        return;
+        return
       }
       setState({ ...state, isLoading: true})
       const account = await authentication.auth({
         email: state.email,
         password: state.password
       })
-      localStorage.setItem('accessToken', account.accessToken);
-      history.replace('/');
+      localStorage.setItem('accessToken', account.accessToken)
+      history.replace('/')
     } catch (error) {
       setState({
         ...state,
@@ -74,7 +74,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
       </Context.Provider>
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
