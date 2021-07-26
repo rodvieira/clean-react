@@ -51,27 +51,27 @@ const populatePasswordField = (sut: RenderResult, password = faker.internet.pass
   fireEvent.input(passwordInput, { target: { value: password } })
 }
 
-const testStatusForField = (sut: RenderResult, fieldName: string, validationError?: string):void => {
+const testStatusForField = (sut: RenderResult, fieldName: string, validationError?: string): void => {
   const emailStatus = sut.getByTestId(`${fieldName}-status`)
   expect(emailStatus.title).toBe(validationError || 'Tudo certo!')
   expect(emailStatus.textContent).toBe(validationError ? '🔴' : '🟢')
 }
 
-const testErrorWrapChildCount = (sut: RenderResult, count: number):void => {
+const testErrorWrapChildCount = (sut: RenderResult, count: number): void => {
   const errorWrap = sut.getByTestId('error-wrap')
   expect(errorWrap.childElementCount).toBe(count)
 }
 
-const testElementExists = (sut: RenderResult, fieldName: string):void => {
+const testElementExists = (sut: RenderResult, fieldName: string): void => {
   const el = sut.getByTestId(fieldName)
   expect(el).toBeTruthy()
 }
 
-const testElementText = (sut: RenderResult, fieldName: string, text: string):void => {
+const testElementText = (sut: RenderResult, fieldName: string, text: string): void => {
   const el = sut.getByTestId(fieldName)
   expect(el.textContent).toBe(text)
 }
-const testButtonIsDisabled = (sut: RenderResult, fieldName: string, isDisabled: boolean):void => {
+const testButtonIsDisabled = (sut: RenderResult, fieldName: string, isDisabled: boolean): void => {
   const button = sut.getByTestId(fieldName) as HTMLButtonElement
   expect(button.disabled).toBe(isDisabled)
 }

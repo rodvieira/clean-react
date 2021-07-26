@@ -5,7 +5,7 @@ import {
   Footer,
   Input,
   LoginHeader,
-  FormStatus,
+  FormStatus
 } from '@/presentation/components'
 import Context from '@/presentation/contexts/form/form-context'
 import { Validation } from '@/presentation/protocols/validation'
@@ -24,7 +24,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
     password: '',
     emailError: '',
     passwordError: '',
-    mainError: '',
+    mainError: ''
   })
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
       if (state.isLoading || state.emailError || state.passwordError) {
         return
       }
-      setState({ ...state, isLoading: true})
+      setState({ ...state, isLoading: true })
       const account = await authentication.auth({
         email: state.email,
         password: state.password

@@ -22,7 +22,7 @@ describe('Input Component', () => {
 
   test('Should remove readOnly on focus', () => {
     const field = faker.database.column()
-    const sut = makeSut(field)    
+    const sut = makeSut(field)
     const input = sut.getByTestId(field) as HTMLInputElement
     fireEvent.focus(input)
     expect(input.readOnly).toBe(false)
