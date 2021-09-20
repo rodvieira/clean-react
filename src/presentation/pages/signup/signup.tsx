@@ -31,9 +31,10 @@ const SignUp: React.FC<Props> = ({ validation }: Props) => {
       ...state,
       nameError: validation.validate('name', state.name),
       emailError: validation.validate('email', state.email),
-      passwordError: validation.validate('password', state.password)
+      passwordError: validation.validate('password', state.password),
+      passwordConfirmationError: validation.validate('passwordConfirmation', state.passwordConfirmationError)
     })
-  }, [state.name, state.email])
+  }, [state.name, state.email, state.passwordConfirmationError])
   return (
     <div className={Styles.signup}>
       <LoginHeader />
