@@ -41,8 +41,8 @@ describe('AxiosHttpClient', () => {
       mockedAxios.post.mockRejectedValueOnce({
         response: mockHttpResponse()
       })
-      const promose = sut.post(mockPostRequest())
-      expect(promose).toEqual(mockedAxios.post.mock.results[0].value)
+      const promise = sut.post(mockPostRequest())
+      expect(promise).toEqual(mockedAxios.post.mock.results[0].value)
     })
   })
 
