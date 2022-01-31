@@ -1,7 +1,7 @@
 import React from 'react'
 import Styles from './spinner-styles.scss'
 
-type Props = React.HTMLAttributes<HTMLElement>
+interface Props extends React.HTMLAttributes<HTMLElement>{}
 
 const Spinner: React.FC<Props> = (props: Props) => {
   return (
