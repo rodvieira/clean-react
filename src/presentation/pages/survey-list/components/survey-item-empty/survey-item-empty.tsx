@@ -9,7 +9,6 @@ const SurveyItemEmpty: React.FC = () => {
       <li className={Styles.surveyItemEmpty}></li>
       <li className={Styles.surveyItemEmpty}></li>
       <li className={Styles.surveyItemEmpty}></li>
-      <li className={Styles.surveyItemEmpty}></li>
     </>
   )
 }
