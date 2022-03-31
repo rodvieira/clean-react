@@ -1,5 +1,6 @@
 import { HttpGetParams } from '@/data/protocols/http'
 import { AuthorizeHttpGetClientDecorator } from '@/main/decorators'
+import { mockAccountModel } from '@/domain/test'
 import { GetStorageSpy, HttpGetClientSpy, mockGetRequest } from '@/data/test'
 import faker from 'faker'
 
@@ -39,5 +40,18 @@ describe('AuthorizeHttpGetClientDecorator', () => {
     await sut.get(httpRequest)
     expect(httpGetClientSpy.url).toBe(httpRequest.url)
     expect(httpGetClientSpy.headers).toEqual(httpRequest.headers)
+  })
+
+  test('Should add headers to HttpGetClient', async () => {
+    const { sut, getStorageSpy, httpGetClientSpy } = makeSut()
+    getStorageSpy.value = mockAccountModel()
+    const httpRequest: HttpGetParams = {
+      url: faker.internet.url()
+    }
+    await sut.get(httpRequest)
+    expect(httpGetClientSpy.url).toBe(httpRequest.url)
+    expect(httpGetClientSpy.headers).toEqual({
+      'x-access-token': getStorageSpy.value.accessToken
+    })
   })
 })
