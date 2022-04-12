@@ -7,7 +7,7 @@ import React, { memo, useContext } from 'react'
 const Header: React.FC = () => {
   const history = useHistory()
   const { setCurrentAccount } = useContext(ApiContext)
-  const logout = (event): void => {
+  const logout = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
     event.preventDefault()
     setCurrentAccount(undefined)
     history.replace('/login')
