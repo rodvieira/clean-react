@@ -1,4 +1,5 @@
-import * as FormHelper from '../support/form-helper'
+import * as FormHelper from '../support/form-helpers'
+import * as Helper from '../support/helpers'
 import * as Http from '../support/login-mocks'
 import faker from 'faker'
 
@@ -49,7 +50,7 @@ describe('Login', () => {
     simulateValidSubmit()
     cy.getByTestId('error-wrap')
     FormHelper.testMainError('Credenciais inválidas')
-    FormHelper.testUrl('/login')
+    Helper.testUrl('/login')
   })
 
   it('Should present UnexpectedError on 400', () => {
@@ -57,15 +58,7 @@ describe('Login', () => {
     simulateValidSubmit()
     cy.getByTestId('error-wrap')
     FormHelper.testMainError('Algo de errado aconteceu. Tente novamente em breve')
-    FormHelper.testUrl('/login')
-  })
-
-  it('Should present UnexpectedError if invalid data is returned', () => {
-    Http.mockInvalidData()
-    simulateValidSubmit()
-    cy.getByTestId('error-wrap')
-    FormHelper.testMainError('Algo de errado aconteceu. Tente novamente em breve')
-    FormHelper.testUrl('/login')
+    Helper.testUrl('/login')
   })
 
   it('Should present save accessToken if valid credentials are provided', () => {
@@ -73,20 +66,20 @@ describe('Login', () => {
     simulateValidSubmit()
     cy.getByTestId('main-error').should('not.exist')
     cy.getByTestId('spinner').should('not.exist')
-    FormHelper.testUrl('/')
-    FormHelper.testLocalStorageItem('account')
+    Helper.testUrl('/')
+    Helper.testLocalStorageItem('account')
   })
 
   it('Should prevent multiple submits', () => {
     Http.mockOk()
     populateFields()
     cy.getByTestId('submit').dblclick()
-    FormHelper.testHttpCallsCount(1)
+    Helper.testHttpCallsCount(1)
   })
 
   it('Should not call submit if form is invalid', () => {
     Http.mockOk()
     cy.getByTestId('email').focus().type(faker.internet.email()).type('{enter}')
-    FormHelper.testHttpCallsCount(0)
+    Helper.testHttpCallsCount(0)
   })
 })
