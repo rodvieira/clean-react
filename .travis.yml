@@ -15,7 +15,7 @@ script:
 deploy:
   provider: heroku
   api_key: $HEROKU_API
-  app: fordevs-react
+  app: dev-survey-app
   skip_cleanup: true
 notifications:
   email: false
